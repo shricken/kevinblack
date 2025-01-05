@@ -17,6 +17,7 @@ export interface Config {
     categories: Category;
     jobs: Job;
     users: User;
+    skills: Skill;
     redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
@@ -33,6 +34,7 @@ export interface Config {
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     jobs: JobsSelect<false> | JobsSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
+    skills: SkillsSelect<false> | SkillsSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
@@ -695,6 +697,18 @@ export interface Job {
     };
     [k: string]: unknown;
   };
+  skills: (string | Skill)[];
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "skills".
+ */
+export interface Skill {
+  id: string;
+  title: string;
+  logo?: (string | null) | Media;
   updatedAt: string;
   createdAt: string;
 }
@@ -796,6 +810,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'users';
         value: string | User;
+      } | null)
+    | ({
+        relationTo: 'skills';
+        value: string | Skill;
       } | null)
     | ({
         relationTo: 'redirects';
@@ -1155,6 +1173,7 @@ export interface JobsSelect<T extends boolean = true> {
   startDate?: T;
   endDate?: T;
   description?: T;
+  skills?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -1173,6 +1192,16 @@ export interface UsersSelect<T extends boolean = true> {
   hash?: T;
   loginAttempts?: T;
   lockUntil?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "skills_select".
+ */
+export interface SkillsSelect<T extends boolean = true> {
+  title?: T;
+  logo?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

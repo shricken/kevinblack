@@ -67,5 +67,12 @@ export const Jobs: CollectionConfig = {
       label: false,
       required: true,
     },
+    {
+      name: 'skills',
+      type: 'relationship',
+      relationTo: 'skills',
+      hasMany: true,
+      required: true,
+    },
   ],
 }

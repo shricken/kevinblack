@@ -4,6 +4,7 @@ import configPromise from '@payload-config'
 import { getPayload } from 'payload'
 import React from 'react'
 import RichText from '@/components/RichText'
+import { CollectionPreviews } from '@/components/CollectionPreviews'
 
 export const JobListBlock: React.FC<
   JobListBlockProps & {
@@ -42,7 +43,7 @@ export const JobListBlock: React.FC<
           <RichText className="ml-0 max-w-[48rem]" data={introContent} enableGutter={false} />
         </div>
       )}
-      job list
+      <CollectionPreviews jobs={jobs} />
     </div>
   )
 }

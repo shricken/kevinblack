@@ -7,6 +7,7 @@ export default {
     './src/**/*.{ts,tsx}',
   ],
   darkMode: ['selector', '[data-theme="dark"]'],
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
   plugins: [require('tailwindcss-animate'), require('@tailwindcss/typography')],
   prefix: '',
   safelist: [
@@ -35,11 +36,11 @@ export default {
         xl: '2rem',
       },
       screens: {
-        '2xl': '86rem',
-        lg: '64rem',
+        '2xl': '56rem',
+        lg: '56rem',
         md: '48rem',
         sm: '40rem',
-        xl: '80rem',
+        xl: '56rem',
       },
     },
     extend: {
@@ -92,7 +93,8 @@ export default {
       },
       fontFamily: {
         mono: ['var(--font-geist-mono)'],
-        sans: ['var(--font-geist-sans)'],
+        sans: ['var(--font-work-sans), sans-serif'],
+        serif: 'emberly, serif',
       },
       keyframes: {
         'accordion-down': {
