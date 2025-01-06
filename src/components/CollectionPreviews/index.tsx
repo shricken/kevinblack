@@ -19,7 +19,7 @@ export const CollectionPreviews: React.FC<Props> = (props) => {
           if (typeof result === 'object' && result !== null) {
             return (
               <li key={index}>
-                <Preview className="h-full" doc={result} showCategories />
+                <Preview doc={result} showCategories />
               </li>
             )
           }

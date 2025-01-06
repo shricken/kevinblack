@@ -22,8 +22,6 @@ export const Preview: React.FC<{
 }> = (props) => {
   const { className, doc, showCategories, title: titleFromProps } = props
 
-  console.log(props)
-
   const { company, description, jobTitle, current, startDate, endDate, skills } = doc || {}
 
   const hasSkills = skills && Array.isArray(skills) && skills.length > 0
@@ -39,8 +37,6 @@ export const Preview: React.FC<{
     : current
       ? 'present'
       : ''
-
-  console.log(skills)
 
   return (
     <article className="mb-32">

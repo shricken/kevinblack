@@ -34,13 +34,15 @@ export const JobListBlock: React.FC<
     }
   }
 
-  console.log(jobs)
-
   return (
     <div className="my-16" id={`block-${id}`}>
       {introContent && (
         <div className="container mb-16">
-          <RichText className="ml-0 max-w-[48rem]" data={introContent} enableGutter={false} />
+          <RichText
+            className="ml-0 max-w-[48rem] text-lg"
+            data={introContent}
+            enableGutter={false}
+          />
         </div>
       )}
       <CollectionPreviews jobs={jobs} />
