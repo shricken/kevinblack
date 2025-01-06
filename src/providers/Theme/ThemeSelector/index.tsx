@@ -1,8 +1,10 @@
 'use client'
 
 import React, { useState } from 'react'
+import { cn } from '@/utilities/cn'
 import DarkIcon from '../../../assets/icons/moon-solid.svg'
 import LightIcon from '../../../assets/icons/sun-solid.svg'
+import AutoIcon from '../../../assets/icons/wand-magic-sparkles-solid.svg'
 
 import type { Theme } from './types'
 
@@ -12,37 +14,65 @@ import { themeLocalStorageKey } from './types'
 export const ThemeSelector: React.FC = () => {
   const { setTheme } = useTheme()
   const [value, setValue] = useState('')
+  const [isAuto, setIsAuto] = useState(true)
+  const [isOpen, setIsOpen] = useState(false)
 
   const browserDarkTheme = window.matchMedia('(prefers-color-scheme: dark)')
 
-  const onThemeChange = (themeToSet: Theme & 'light') => {
+  const handleToggle = () => {
+    setIsOpen(!isOpen)
+  }
+
+  const onThemeChange = (themeToSet: Theme | null) => {
     console.log(themeToSet)
-    setTheme(themeToSet)
-    setValue(themeToSet)
+    if (themeToSet === value || !themeToSet) {
+      setTheme(null)
+      setValue(browserDarkTheme.matches ? 'dark' : 'light')
+      setIsAuto(true)
+    } else {
+      setTheme(themeToSet)
+      setValue(themeToSet)
+      setIsAuto(false)
+    }
+    setIsOpen(false)
   }
 
   const iconProps = {
-    className: 'w-8 h-8 p-2 cursor-pointer dark:fill-white',
+    className: 'w-8 h-8 p-2 dark:fill-white',
+  }
+
+  const autoIconProps = {
+    className: 'w-3 h-3 ml-2 dark:fill-white',
   }
 
   React.useEffect(() => {
     const preference = window.localStorage.getItem(themeLocalStorageKey)
-    setValue(preference ?? 'light')
+    onThemeChange(preference === 'light' || preference === 'dark' ? preference : null)
   }, [])
 
-  return <div>{value ? <DarkIcon {...iconProps} /> : <LightIcon {...iconProps} />}</div>
+  return (
+    <div className="relative">
+      <button className="cursor-pointer" onClick={handleToggle}>
+        {value === 'dark' ? <DarkIcon {...iconProps} /> : <LightIcon {...iconProps} />}
+      </button>
+      <ul className={cn('list-none', 'absolute', 'right-0', isOpen ? 'block' : 'hidden')}>
+        <li>
+          <button
+            className="flex items-center cursor-pointer"
+            onClick={() => onThemeChange('light')}
+          >
+            <LightIcon {...iconProps} />
+            Light
+            {isAuto && value === 'light' && <AutoIcon {...autoIconProps} />}
+          </button>
+        </li>
+        <li>
+          <button className="flex items-center" onClick={() => onThemeChange('dark')}>
+            <DarkIcon {...iconProps} /> Dark
+            {isAuto && value === 'dark' && <AutoIcon {...autoIconProps} />}
+          </button>
+        </li>
+      </ul>
+    </div>
+  )
 }
-
-// <Select onValueChange={onThemeChange} value={value}>
-//   <SelectTrigger
-//     aria-label="Select a theme"
-//     className="w-auto bg-transparent gap-2 pl-0 md:pl-3 border-none"
-//   >
-//     <SelectValue placeholder="Theme" />
-//   </SelectTrigger>
-//   <SelectContent>
-//     <SelectItem value="auto">Auto</SelectItem>
-//     <SelectItem value="light">Light</SelectItem>
-//     <SelectItem value="dark">Dark</SelectItem>
-//   </SelectContent>
-// </Select>
