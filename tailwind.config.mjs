@@ -44,6 +44,9 @@ export default {
       },
     },
     extend: {
+      dropShadow: {
+        icon: '0 2px 10px rgba(var(--logo-shadow-color)))',
+      },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',

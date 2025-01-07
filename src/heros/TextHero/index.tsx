@@ -10,23 +10,23 @@ import RichText from '@/components/RichText'
 
 export const TextHero: React.FC<Page['hero']> = ({ heroTitle, links, richText }) => {
   const { scrollYProgress } = useScroll()
-  const headlineBackgroundWidth = useTransform(scrollYProgress, (x) => x * 2000)
+  const headlineBackgroundWidth = useTransform(scrollYProgress, (x) => x * 5000)
 
   return (
     <div className="relative -mt-[10.4rem] h-[75vh] flex items-center justify-start">
       <div className="container mb-8 z-10 relative">
         <div className="max-w-[36.5rem]">
-          <h1 className="relative text-transparent text-8xl font-serif mt-6 bg-gradient-to-br from-30% from-primary bg-clip-text">
+          <h1 className="relative text-transparent text-8xl font-serif mt-6 bg-gradient-to-br from-30% from-primary to-white dark:to-black bg-clip-text">
             {heroTitle}
             <motion.span
-              className="absolute left-[-5px] bottom-1 h-12 max-h-full skew-y-[-1deg] skew-x-[-1deg] origin-bottom-left opacity-10 bg-primary z-[-1] dark:opacity-20"
+              className="absolute left-[-5px] bottom-1 h-12 max-w-full skew-y-[-1deg] skew-x-[-1deg] origin-bottom-left opacity-10 bg-primary z-[-1] dark:opacity-20"
               style={{
                 width: headlineBackgroundWidth,
               }}
             />
           </h1>
           {richText && <RichText className="mb-6 text-xl" data={richText} enableGutter={false} />}
-          {Array.isArray(links) && links.length > 0 && (
+          {links && Array.isArray(links) && links.length > 0 && (
             <ul className="flex gap-4">
               {links.map(({ link }, i) => {
                 link.appearance = 'link'

@@ -5,11 +5,13 @@ import { cn } from '@/utilities/cn'
 import DarkIcon from '../../../assets/icons/moon-solid.svg'
 import LightIcon from '../../../assets/icons/sun-solid.svg'
 import AutoIcon from '../../../assets/icons/wand-magic-sparkles-solid.svg'
+import CheckIcon from '../../../assets/icons/circle-check-solid.svg'
 
 import type { Theme } from './types'
 
 import { useTheme } from '..'
 import { themeLocalStorageKey } from './types'
+import freezeScroll from '@/utilities/freezeScroll'
 
 export const ThemeSelector: React.FC = () => {
   const { setTheme } = useTheme()
@@ -18,30 +20,34 @@ export const ThemeSelector: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false)
 
   const browserDarkTheme = window.matchMedia('(prefers-color-scheme: dark)')
+  const browserTheme = browserDarkTheme.matches ? 'dark' : 'light'
 
   const handleToggle = () => {
+    freezeScroll(!isOpen)
     setIsOpen(!isOpen)
   }
 
   const onThemeChange = (themeToSet: Theme | null) => {
     if (themeToSet === value || !themeToSet) {
       setTheme(null)
-      setValue(browserDarkTheme.matches ? 'dark' : 'light')
-      setIsAuto(true)
+      setValue(browserTheme)
+      setIsAuto(!isAuto)
     } else {
       setTheme(themeToSet)
       setValue(themeToSet)
       setIsAuto(false)
     }
     setIsOpen(false)
+    freezeScroll(false)
   }
 
   const iconProps = {
-    className: 'w-8 h-8 p-2 dark:fill-white',
+    className:
+      'w-8 h-8 p-2 drop-shadow-[0_1px_2px_rgba(255,255,255,0.9)] dark:fill-white dark:drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]',
   }
 
   const autoIconProps = {
-    className: 'w-3 h-3 ml-2 dark:fill-white',
+    className: 'w-3 h-3 ml-2 fill-primary',
   }
 
   React.useEffect(() => {
@@ -62,13 +68,15 @@ export const ThemeSelector: React.FC = () => {
           >
             <LightIcon {...iconProps} />
             Light
-            {isAuto && value === 'light' && <AutoIcon {...autoIconProps} />}
+            {value === 'light' &&
+              (isAuto ? <AutoIcon {...autoIconProps} /> : <CheckIcon {...autoIconProps} />)}
           </button>
         </li>
         <li>
           <button className="flex items-center" onClick={() => onThemeChange('dark')}>
             <DarkIcon {...iconProps} /> Dark
-            {isAuto && value === 'dark' && <AutoIcon {...autoIconProps} />}
+            {value === 'dark' &&
+              (isAuto ? <AutoIcon {...autoIconProps} /> : <CheckIcon {...autoIconProps} />)}
           </button>
         </li>
       </ul>
@@ -79,9 +87,9 @@ export const ThemeSelector: React.FC = () => {
           'w-[140vw]',
           'h-[140vh]',
           'z-[-1]',
-          'transition-all duration-300',
+          'transition-all duration-500',
           isOpen
-            ? 'left-[-20vw] top-[20vh] opacity-1'
+            ? 'left-[-20vw] top-0 opacity-1'
             : 'left-[20vw] top-[-20vh] opacity-0 pointer-events-none',
         )}
         onClick={handleToggle}
