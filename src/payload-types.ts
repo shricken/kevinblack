@@ -89,7 +89,8 @@ export interface Page {
   id: string;
   title: string;
   hero: {
-    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
+    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact' | 'textHero';
+    heroTitle?: string | null;
     richText?: {
       root: {
         type: string;
@@ -121,7 +122,7 @@ export interface Page {
                 } | null);
             url?: string | null;
             label: string;
-            appearance?: ('default' | 'outline') | null;
+            appearance?: ('default' | 'outline' | 'link') | null;
           };
           id?: string | null;
         }[]
@@ -397,7 +398,7 @@ export interface ContentBlock {
               } | null);
           url?: string | null;
           label: string;
-          appearance?: ('default' | 'outline') | null;
+          appearance?: ('default' | 'outline' | 'link') | null;
         };
         id?: string | null;
       }[]
@@ -883,6 +884,7 @@ export interface PagesSelect<T extends boolean = true> {
     | T
     | {
         type?: T;
+        heroTitle?: T;
         richText?: T;
         links?:
           | T

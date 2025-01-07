@@ -24,7 +24,6 @@ export const ThemeSelector: React.FC = () => {
   }
 
   const onThemeChange = (themeToSet: Theme | null) => {
-    console.log(themeToSet)
     if (themeToSet === value || !themeToSet) {
       setTheme(null)
       setValue(browserDarkTheme.matches ? 'dark' : 'light')
@@ -73,6 +72,23 @@ export const ThemeSelector: React.FC = () => {
           </button>
         </li>
       </ul>
+      <div
+        className={cn(
+          'backdrop-blur-sm',
+          'fixed',
+          'w-[140vw]',
+          'h-[140vh]',
+          'z-[-1]',
+          'transition-all duration-300',
+          isOpen
+            ? 'left-[-20vw] top-[20vh] opacity-1'
+            : 'left-[20vw] top-[-20vh] opacity-0 pointer-events-none',
+        )}
+        onClick={handleToggle}
+        style={{
+          maskImage: 'linear-gradient(to left bottom, rgba(0,0,0,1), 90%, rgba(0,0,0,0))',
+        }}
+      />
     </div>
   )
 }

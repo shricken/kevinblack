@@ -3,7 +3,7 @@ import useClickableCard from '@/utilities/useClickableCard'
 import Link from 'next/link'
 import React, { Fragment } from 'react'
 
-import type { Job } from '@/payload-types'
+import type { Job, Skill } from '@/payload-types'
 
 import { Media } from '@/components/Media'
 import { RichText } from '@payloadcms/richtext-lexical/react'
@@ -50,8 +50,8 @@ export const Preview: React.FC<{
       {description && <RichText className="font-light" data={description} />}
       {skills && (
         <ul className="list-none flex flex-wrap gap-3 mt-3">
-          {skills.map((skill, index) => (
-            <Tag key={index} title={skill.title} />
+          {skills.map((skill: Skill, index) => (
+            <Tag key={index} title={skill?.title} />
           ))}
         </ul>
       )}
