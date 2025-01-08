@@ -20,7 +20,7 @@ export const JobListBlock: React.FC<
 
     const fetchedJobs = await payload.find({
       collection: 'jobs',
-      depth: 1,
+      depth: 2,
     })
 
     jobs = fetchedJobs.docs

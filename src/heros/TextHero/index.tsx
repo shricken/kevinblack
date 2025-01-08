@@ -10,7 +10,7 @@ import RichText from '@/components/RichText'
 
 export const TextHero: React.FC<Page['hero']> = ({ heroTitle, links, richText }) => {
   const { scrollYProgress } = useScroll()
-  const headlineBackgroundWidth = useTransform(scrollYProgress, (x) => x * 5000)
+  const headlineBackgroundWidth = useTransform(scrollYProgress, (x) => x * 4000)
 
   return (
     <div className="relative -mt-[10.4rem] h-[75vh] flex items-center justify-start">

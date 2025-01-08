@@ -9,10 +9,9 @@ import {
   InlineToolbarFeature,
   HorizontalRuleFeature,
 } from '@payloadcms/richtext-lexical'
-import { slugField } from '@/fields/slug'
 
-export const Jobs: CollectionConfig = {
-  slug: 'jobs',
+export const Projects: CollectionConfig = {
+  slug: 'projects',
   access: {
     create: authenticated,
     delete: authenticated,
@@ -20,36 +19,13 @@ export const Jobs: CollectionConfig = {
     update: authenticated,
   },
   admin: {
-    useAsTitle: 'company',
+    useAsTitle: 'projectName',
   },
   fields: [
     {
-      name: 'company',
+      name: 'projectName',
       type: 'text',
       required: true,
-    },
-    {
-      name: 'jobTitle',
-      type: 'text',
-      required: true,
-    },
-    {
-      name: 'current',
-      label: 'Is this your current job?',
-      type: 'checkbox',
-    },
-    {
-      name: 'startDate',
-      type: 'date',
-      required: true,
-    },
-    {
-      name: 'endDate',
-      type: 'date',
-      required: true,
-      admin: {
-        condition: (_, { current } = {}) => !current,
-      },
     },
     {
       name: 'description',
@@ -69,18 +45,10 @@ export const Jobs: CollectionConfig = {
       required: true,
     },
     {
-      name: 'skills',
-      type: 'relationship',
-      relationTo: 'skills',
-      hasMany: true,
+      name: 'media',
+      type: 'upload',
+      relationTo: 'media',
       required: true,
     },
-    {
-      name: 'projects',
-      type: 'relationship',
-      relationTo: 'projects',
-      hasMany: true,
-    },
-    ...slugField('company'),
   ],
 }
