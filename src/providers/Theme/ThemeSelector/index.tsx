@@ -19,8 +19,9 @@ export const ThemeSelector: React.FC = () => {
   const [isAuto, setIsAuto] = useState(true)
   const [isOpen, setIsOpen] = useState(false)
 
-  const browserDarkTheme = window.matchMedia('(prefers-color-scheme: dark)')
-  const browserTheme = browserDarkTheme.matches ? 'dark' : 'light'
+  const browserDarkTheme =
+    typeof window !== 'undefined' ? window.matchMedia('(prefers-color-scheme: dark)') : null
+  const browserTheme = browserDarkTheme && browserDarkTheme.matches ? 'dark' : 'light'
 
   const handleToggle = () => {
     freezeScroll(!isOpen)
@@ -82,12 +83,7 @@ export const ThemeSelector: React.FC = () => {
       </ul>
       <div
         className={cn(
-          'backdrop-blur-sm',
-          'fixed',
-          'w-[140vw]',
-          'h-[140vh]',
-          'z-[-1]',
-          'transition-all duration-500',
+          'backdrop-blur-sm fixed w-[140vw] h-[140vh] z-[-1] transition-all duration-500',
           isOpen
             ? 'left-[-20vw] top-0 opacity-1'
             : 'left-[20vw] top-[-20vh] opacity-0 pointer-events-none',
