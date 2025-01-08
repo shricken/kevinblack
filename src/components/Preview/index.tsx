@@ -67,7 +67,7 @@ export const Preview: React.FC<{
         {projects?.length && slug && (
           <div>
             <button
-              className="text-primary font-bold text-sm whitespace-nowrap hover:underline"
+              className="text-primary font-bold text-sm whitespace-nowrap underline-offset-4 hover:underline"
               onClick={() => handleJobClick(slug)}
             >
               Learn more →
