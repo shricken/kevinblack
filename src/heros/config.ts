@@ -35,7 +35,19 @@ export const hero: Field = {
           label: 'Low Impact',
           value: 'lowImpact',
         },
+        {
+          label: 'Text Hero',
+          value: 'textHero',
+        },
       ],
+      required: true,
+    },
+    {
+      name: 'heroTitle',
+      type: 'text',
+      admin: {
+        condition: (_, { type } = {}) => ['textHero'].includes(type),
+      },
       required: true,
     },
     {
