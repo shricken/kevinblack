@@ -65,7 +65,7 @@ export const Preview: React.FC<{
           </ul>
         )}
         {projects?.length && slug && (
-          <div>
+          <div className="mt-4 md:mt-0">
             <button
               className="text-primary font-bold text-sm whitespace-nowrap underline-offset-4 hover:underline"
               onClick={() => handleJobClick(slug)}

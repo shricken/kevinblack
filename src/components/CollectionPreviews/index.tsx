@@ -56,7 +56,7 @@ export const CollectionPreviews: React.FC<Props> = (props) => {
               y: 0,
               rotate: 0,
               opacity: 1,
-              transition: { delay: 0.05, duration: 0.3, ease: 'easeOut' },
+              transition: { delay: 0.75, duration: 0.3, ease: 'easeOut' },
             }}
             exit={{
               y: 30,
@@ -68,7 +68,7 @@ export const CollectionPreviews: React.FC<Props> = (props) => {
             <div className="container p-0 lg:max-w-[1100px]">
               <div className="md:flex justify-between flex-row-reverse">
                 <button
-                  className="hover:underline hover:text-primary"
+                  className="underline-offset-4 mb-4 md:mb-0 hover:underline hover:text-primary"
                   onClick={() => handleJobClick(null)}
                 >
                   close ×
@@ -90,7 +90,7 @@ export const CollectionPreviews: React.FC<Props> = (props) => {
         className={cn(
           'bg-white/80 backdrop-blur-sm fixed left-0 right-0 top-0 bottom-0 w-[140vw] h-[140vh] z-20 transition-all duration-500 dark:bg-black/80',
           activeJob
-            ? 'left-[-20vw] top-0 opacity-100'
+            ? 'delay-300 left-[-20vw] top-0 opacity-100'
             : 'left-[20vw] top-[-20vh] opacity-0 pointer-events-none',
         )}
       />
