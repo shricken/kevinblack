@@ -58,7 +58,11 @@ export const ThemeSelector: React.FC = () => {
 
   return (
     <div className="relative">
-      <button className="cursor-pointer" onClick={handleToggle}>
+      <button
+        className="cursor-pointer"
+        onClick={handleToggle}
+        aria-label={`Currently using ${value} theme. Click here to change.`}
+      >
         {value === 'dark' ? <DarkIcon {...iconProps} /> : <LightIcon {...iconProps} />}
       </button>
       <ul className={cn('list-none', 'absolute', 'right-0', isOpen ? 'block' : 'hidden')}>
@@ -66,6 +70,7 @@ export const ThemeSelector: React.FC = () => {
           <button
             className="flex items-center cursor-pointer"
             onClick={() => onThemeChange('light')}
+            aria-label={`Click here to ${value === 'light' && !isAuto ? 'revert to default theme' : 'use light theme'}.`}
           >
             <LightIcon {...iconProps} />
             Light
@@ -74,7 +79,11 @@ export const ThemeSelector: React.FC = () => {
           </button>
         </li>
         <li>
-          <button className="flex items-center" onClick={() => onThemeChange('dark')}>
+          <button
+            className="flex items-center"
+            onClick={() => onThemeChange('dark')}
+            aria-label={`Click here to ${value === 'dark' && !isAuto ? 'revert to default theme' : 'use dark theme'}.`}
+          >
             <DarkIcon {...iconProps} /> Dark
             {value === 'dark' &&
               (isAuto ? <AutoIcon {...autoIconProps} /> : <CheckIcon {...autoIconProps} />)}

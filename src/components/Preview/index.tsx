@@ -60,12 +60,14 @@ export const Preview: React.FC<{
         {skills && (
           <ul className="list-none flex flex-wrap gap-3">
             {skills.map((skill: Skill, index) => (
-              <Tag key={index} title={skill?.title} />
+              <li key={index}>
+                <Tag title={skill?.title} />
+              </li>
             ))}
           </ul>
         )}
         {projects?.length && slug && (
-          <div>
+          <div className="mt-4 md:mt-0">
             <button
               className="text-primary font-bold text-sm whitespace-nowrap underline-offset-4 hover:underline"
               onClick={() => handleJobClick(slug)}
