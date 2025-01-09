@@ -60,7 +60,9 @@ export const Preview: React.FC<{
         {skills && (
           <ul className="list-none flex flex-wrap gap-3">
             {skills.map((skill: Skill, index) => (
-              <Tag key={index} title={skill?.title} />
+              <li key={index}>
+                <Tag title={skill?.title} />
+              </li>
             ))}
           </ul>
         )}
