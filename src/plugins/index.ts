@@ -10,6 +10,7 @@ import { GenerateTitle, GenerateURL } from '@payloadcms/plugin-seo/types'
 import { FixedToolbarFeature, HeadingFeature, lexicalEditor } from '@payloadcms/richtext-lexical'
 import { searchFields } from '@/search/fieldOverrides'
 import { beforeSyncWithSearch } from '@/search/beforeSync'
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 
 import { Page, Post } from '@/payload-types'
 import { getServerSideURL } from '@/utilities/getURL'
@@ -79,6 +80,14 @@ export const plugins: Plugin[] = [
         })
       },
     },
+  }),
+  vercelBlobStorage({
+    enabled: !!process.env.BLOB_ENABLED,
+    collections: {
+      media: true,
+    },
+    addRandomSuffix: true,
+    token: process.env.BLOB_READ_WRITE_TOKEN,
   }),
   searchPlugin({
     collections: ['posts'],

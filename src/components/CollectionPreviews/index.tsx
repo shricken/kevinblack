@@ -4,7 +4,7 @@ import { cn } from '@/utilities/cn'
 import React, { useState } from 'react'
 
 import { Preview, JobPostData } from '../Preview'
-import { ProjectCard } from '../ProjectCard'
+import { ProjectCard } from '../Project'
 import { AnimatePresence, cubicBezier, motion } from 'motion/react'
 import freezeScroll from '@/utilities/freezeScroll'
 
