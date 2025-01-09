@@ -1,13 +1,13 @@
 import { cn } from '@/utilities/cn'
-import useClickableCard from '@/utilities/useClickableCard'
-import Link from 'next/link'
-import React, { Fragment } from 'react'
+import freezeScroll from '@/utilities/freezeScroll'
+import { motion } from 'motion/react'
+import React, { useState } from 'react'
 
 import type { Job, Skill } from '@/payload-types'
 
-import { Media } from '@/components/Media'
 import RichText from '../RichText'
 import { Tag } from '../ui/tag'
+import { PreviewDetails } from '../PreviewDetails'
 
 export type JobPostData = Pick<
   Job,
@@ -27,9 +27,10 @@ export const Preview: React.FC<{
   doc?: JobPostData
   showCategories?: boolean
   title?: string
-  handleJobClick: (slug: string | null) => void
 }> = (props) => {
-  const { className, doc, showCategories, title: titleFromProps, handleJobClick } = props
+  const { className, doc, showCategories, title: titleFromProps } = props
+  const [isActive, setIsActive] = useState(false)
+  if (!doc) return false
 
   const { company, description, jobTitle, current, startDate, endDate, skills, projects, slug } =
     doc || {}
@@ -45,6 +46,11 @@ export const Preview: React.FC<{
     : current
       ? 'present'
       : ''
+
+  function handleJobClick(active) {
+    freezeScroll(active ?? null)
+    setIsActive(active)
+  }
 
   return (
     <article className="mb-32">
@@ -67,14 +73,46 @@ export const Preview: React.FC<{
           </ul>
         )}
         {projects?.length && slug && (
-          <div className="mt-4 md:mt-0">
-            <button
-              className="text-primary font-bold text-sm whitespace-nowrap underline-offset-4 hover:underline"
-              onClick={() => handleJobClick(slug)}
+          <>
+            <div className="mt-4 md:mt-0">
+              <button
+                className="text-primary font-bold text-sm whitespace-nowrap underline-offset-4 hover:underline"
+                onClick={() => handleJobClick(true)}
+              >
+                Learn more →
+              </button>
+            </div>
+            <motion.section
+              className={cn(
+                'fixed left-0 right-0 top-0 bottom-0 p-10 z-30 overflow-auto ',
+                !isActive && 'pointer-events-none',
+              )}
+              initial={{
+                y: -30,
+                x: -20,
+                rotate: '1.2deg',
+                opacity: 0,
+              }}
+              animate={{
+                x: isActive ? 0 : -30,
+                y: isActive ? 0 : -20,
+                rotate: isActive ? 0 : '1.2deg',
+                opacity: isActive ? 1 : 0,
+                transition: { duration: 0.3, ease: 'easeOut' },
+              }}
             >
-              Learn more →
-            </button>
-          </div>
+              <PreviewDetails job={{ company, projects }} handleJobClick={handleJobClick} />
+            </motion.section>
+
+            <div
+              className={cn(
+                'bg-white/80 backdrop-blur-sm fixed left-0 right-0 top-0 bottom-0 w-[140vw] h-[140vh] z-20 transition-all duration-500 dark:bg-black/80',
+                isActive
+                  ? 'left-[-20vw] top-0 opacity-100'
+                  : 'left-[20vw] top-[-20vh] opacity-0 pointer-events-none',
+              )}
+            />
+          </>
         )}
       </div>
     </article>
