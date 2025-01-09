@@ -21,7 +21,7 @@ export const ProjectCard: React.FC<{
   return (
     <article className={cn(className)}>
       <div className="relative w-full ">
-        {media && typeof media !== 'string' && <Media className="aspect-video" resource={media} />}
+        {media && typeof media !== 'string' && <Media preload="metadata" resource={media} />}
       </div>
       <div className="py-4">
         {projectName && <h2 className="font-serif text-5xl">{projectName}</h2>}
