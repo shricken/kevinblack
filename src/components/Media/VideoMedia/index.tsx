@@ -6,7 +6,6 @@ import React, { useEffect, useRef } from 'react'
 import type { Props as MediaProps } from '../types'
 
 import { getClientSideURL } from '@/utilities/getURL'
-import Video from 'next-video'
 
 export const VideoMedia: React.FC<MediaProps> = (props) => {
   const { onClick, resource, videoClassName, preload = 'auto' } = props
@@ -28,7 +27,7 @@ export const VideoMedia: React.FC<MediaProps> = (props) => {
     const { url } = resource
 
     return (
-      <Video
+      <video
         autoPlay
         className={cn(videoClassName)}
         controls={false}
@@ -40,7 +39,7 @@ export const VideoMedia: React.FC<MediaProps> = (props) => {
         preload={preload}
       >
         <source src={`${getClientSideURL()}${url}`} />
-      </Video>
+      </video>
     )
   }
 
