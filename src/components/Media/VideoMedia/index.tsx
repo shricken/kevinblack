@@ -20,8 +20,14 @@ export const VideoMedia: React.FC<MediaProps> = (props) => {
         // setShowFallback(true);
         // console.warn('Video was suspended, rendering fallback image.')
       })
+
+      if (autoplay) {
+        video.play()
+      } else {
+        video.pause()
+      }
     }
-  }, [])
+  }, [autoplay])
 
   if (resource && typeof resource === 'object') {
     const { url } = resource
@@ -39,9 +45,6 @@ export const VideoMedia: React.FC<MediaProps> = (props) => {
     if (autoplay) {
       args.autoPlay = true
     }
-
-    console.log(autoplay)
-    console.log(args)
 
     return (
       <video {...args}>

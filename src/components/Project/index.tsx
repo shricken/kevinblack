@@ -15,7 +15,6 @@ export const ProjectCard: React.FC<{
   autoplay?: boolean
 }> = (props) => {
   const { className, doc, autoplay } = props
-  console.log(autoplay)
 
   const { projectName, description, media } = doc || {}
 

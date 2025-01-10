@@ -14,7 +14,6 @@ export const PreviewDetails: React.FC<{
   isActive: boolean
 }> = ({ job, handleJobClick, isActive }) => {
   const { company, projects } = job
-  console.log(isActive)
 
   return (
     <div className="container p-0 lg:max-w-[1100px]">
