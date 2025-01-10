@@ -101,7 +101,11 @@ export const Preview: React.FC<{
                 transition: { duration: 0.3, ease: 'easeOut' },
               }}
             >
-              <PreviewDetails job={{ company, projects }} handleJobClick={handleJobClick} />
+              <PreviewDetails
+                job={{ company, projects }}
+                handleJobClick={handleJobClick}
+                isActive={isActive}
+              />
             </motion.section>
 
             <div

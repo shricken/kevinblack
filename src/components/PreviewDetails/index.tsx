@@ -1,19 +1,20 @@
 'use client'
 
 import { cn } from '@/utilities/cn'
-import React, { useState } from 'react'
+import React from 'react'
 
 import { ProjectCard } from '../Project'
 import { Job } from '@/payload-types'
-import { cubicBezier, motion } from 'motion/react'
 
 export type PreviewDescriptionData = Pick<Job, 'company' | 'projects' | 'slug'>
 
-export const PreviewDetails: React.FC<{ job: PreviewDescriptionData; handleJobClick }> = ({
-  job,
-  handleJobClick,
-}) => {
+export const PreviewDetails: React.FC<{
+  job: PreviewDescriptionData
+  handleJobClick
+  isActive: boolean
+}> = ({ job, handleJobClick, isActive }) => {
   const { company, projects } = job
+  console.log(isActive)
 
   return (
     <div className="container p-0 lg:max-w-[1100px]">
@@ -29,7 +30,7 @@ export const PreviewDetails: React.FC<{ job: PreviewDescriptionData; handleJobCl
       <div className="grid md:grid-cols-2 gap-6 md:gap-12">
         {projects?.map((project, index) => {
           if (typeof project === 'object')
-            return <ProjectCard key={`project-${index}`} doc={project} />
+            return <ProjectCard key={`project-${index}`} doc={project} autoplay={isActive} />
         })}
       </div>
     </div>
