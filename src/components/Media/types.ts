@@ -19,4 +19,5 @@ export interface Props {
   src?: StaticImageData // for static media
   videoClassName?: string
   preload?: string
+  autoplay?: boolean
 }

@@ -1,7 +1,6 @@
 'use client'
 import { cn } from '@/utilities/cn'
-import payload from 'payload'
-import React, { Fragment } from 'react'
+import React from 'react'
 
 import type { Project, Media as MediaType } from '@/payload-types'
 
@@ -13,15 +12,18 @@ export type ProjectCardData = Pick<Project, 'projectName' | 'description' | 'med
 export const ProjectCard: React.FC<{
   className?: string
   doc?: ProjectCardData
+  autoplay?: boolean
 }> = (props) => {
-  const { className, doc } = props
+  const { className, doc, autoplay } = props
 
   const { projectName, description, media } = doc || {}
 
   return (
     <article className={cn(className)}>
       <div className="relative w-full ">
-        {media && typeof media !== 'string' && <Media preload="metadata" resource={media} />}
+        {media && typeof media !== 'string' && (
+          <Media preload="metadata" resource={media} autoplay={autoplay} />
+        )}
       </div>
       <div className="py-4">
         {projectName && <h2 className="font-serif text-5xl">{projectName}</h2>}
