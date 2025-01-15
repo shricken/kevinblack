@@ -20,5 +20,5 @@ export interface Props {
   videoClassName?: string
   preload?: string
   autoplay?: boolean
-  placeholder?: string
+  placeholder?: MediaType
 }

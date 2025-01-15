@@ -32,7 +32,7 @@ export const VideoMedia: React.FC<MediaProps> = (props) => {
   }, [autoplay])
 
   if (resource && typeof resource === 'object') {
-    const { url } = resource
+    const { url, placeholder } = resource
     const args: any = {
       className: cn(videoClassName),
       controls: false,
@@ -48,8 +48,8 @@ export const VideoMedia: React.FC<MediaProps> = (props) => {
       args.autoPlay = true
     }
 
-    if (resource?.placeholder?.url) {
-      args.placeholder = `${getClientSideURL()}${resource.placeholder.url}`
+    if (placeholder && typeof placeholder !== 'string' && Object.hasOwn(placeholder, 'url')) {
+      args.placeholder = `${getClientSideURL()}${placeholder.url}`
     }
 
     return (
