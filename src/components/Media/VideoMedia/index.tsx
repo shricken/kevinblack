@@ -49,7 +49,7 @@ export const VideoMedia: React.FC<MediaProps> = (props) => {
     }
 
     if (placeholder && typeof placeholder !== 'string' && Object.hasOwn(placeholder, 'url')) {
-      args.placeholder = `${getClientSideURL()}${placeholder.url}`
+      args.poster = `${getClientSideURL()}${placeholder.url}`
     }
 
     return (
