@@ -37,6 +37,16 @@ export const Media: CollectionConfig = {
         },
       }),
     },
+    {
+      name: 'placeholder',
+      type: 'upload',
+      relationTo: 'media',
+      admin: {
+        condition: ({ filename }) => {
+          return filename && filename.endsWith('mp4')
+        },
+      },
+    },
   ],
   upload: {
     // Upload to the public/media directory in Next.js making them publicly accessible even outside of Payload
