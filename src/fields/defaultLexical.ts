@@ -28,7 +28,7 @@ export const defaultLexical: Config['editor'] = lexicalEditor({
             {
               name: 'url',
               type: 'text',
-              admin: {
+              addmin: {
                 condition: ({ linkType }) => linkType !== 'internal',
               },
               label: ({ t }) => t('fields:enterURL'),

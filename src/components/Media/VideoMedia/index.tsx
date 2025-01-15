@@ -10,6 +10,8 @@ import { getClientSideURL } from '@/utilities/getURL'
 export const VideoMedia: React.FC<MediaProps> = (props) => {
   const { onClick, resource, videoClassName, preload = 'auto', autoplay = false } = props
 
+  console.log(resource)
+
   const videoRef = useRef<HTMLVideoElement>(null)
   // const [showFallback] = useState<boolean>()
 
@@ -30,7 +32,7 @@ export const VideoMedia: React.FC<MediaProps> = (props) => {
   }, [autoplay])
 
   if (resource && typeof resource === 'object') {
-    const { url } = resource
+    const { url, placeholder } = resource
     const args: any = {
       className: cn(videoClassName),
       controls: false,
@@ -44,6 +46,10 @@ export const VideoMedia: React.FC<MediaProps> = (props) => {
 
     if (autoplay) {
       args.autoPlay = true
+    }
+
+    if (placeholder && typeof placeholder !== 'string' && Object.hasOwn(placeholder, 'url')) {
+      args.placeholder = `${getClientSideURL()}${placeholder.url}`
     }
 
     return (
