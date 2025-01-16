@@ -1,6 +1,6 @@
 # kevinblack.dev
 
-This little site was build using the official [Payload Website Template](https://github.com/payloadcms/payload/blob/main/templates/website) as a base, and customized for my needs.
+This little site was built using the official [Payload Website Template](https://github.com/payloadcms/payload/blob/main/templates/website) as a base, and customized for my needs.
 
 Technology used:
 - Payload CMS
