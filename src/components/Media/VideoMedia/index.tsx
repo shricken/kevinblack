@@ -10,8 +10,6 @@ import { getClientSideURL } from '@/utilities/getURL'
 export const VideoMedia: React.FC<MediaProps> = (props) => {
   const { onClick, resource, videoClassName, preload = 'auto', autoplay = false } = props
 
-  console.log(resource)
-
   const videoRef = useRef<HTMLVideoElement>(null)
   // const [showFallback] = useState<boolean>()
 
