@@ -22,7 +22,7 @@ export const ProjectCard: React.FC<{
     <article className={cn(className)}>
       <div className="relative w-full ">
         {media && typeof media !== 'string' && (
-          <Media preload="metadata" resource={media} autoplay={autoplay} />
+          <Media preload="none" resource={media} autoplay={autoplay} />
         )}
       </div>
       <div className="py-4">
