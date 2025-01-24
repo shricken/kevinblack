@@ -25,6 +25,7 @@ export const Icon: React.FC<{
           resource={media}
           htmlElement={null}
           alt={iconName}
+          loading="eager"
         />
       )}
     </div>
