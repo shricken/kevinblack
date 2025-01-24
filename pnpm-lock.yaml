@@ -95,9 +95,6 @@ importers:
       react-hook-form:
         specifier: 7.45.4
         version: 7.45.4(react@19.0.0)
-      react-inlinesvg:
-        specifier: ^4.1.8
-        version: 4.1.8(react@19.0.0)
       sharp:
         specifier: 0.32.6
         version: 0.32.6
@@ -4383,11 +4380,6 @@ packages:
     peerDependencies:
       react: '>=16.13.1'
 
-  react-from-dom@0.7.5:
-    resolution: {integrity: sha512-CO92PmMKo/23uYPm6OFvh5CtZbMgHs/Xn+o095Lz/TZj9t8DSDhGdSOMLxBxwWI4sr0MF17KUn9yJWc5Q00R/w==}
-    peerDependencies:
-      react: 16.8 - 19
-
   react-hook-form@7.45.4:
     resolution: {integrity: sha512-HGDV1JOOBPZj10LB3+OZgfDBTn+IeEsNOKiq/cxbQAIbKaiJUe/KV8DBUzsx0Gx/7IG/orWqRRm736JwOfUSWQ==}
     engines: {node: '>=12.22.0'}
@@ -4398,11 +4390,6 @@ packages:
     resolution: {integrity: sha512-4rb8XtXNx7ZaOZarKKnckgz4xLMvds/YrU6mpJfGhGAsy2Mg4mIw1x+DCCGngVGq2soTBVVOxx2s/C6mTX9+pA==}
     peerDependencies:
       react: '>=16.13.1'
-
-  react-inlinesvg@4.1.8:
-    resolution: {integrity: sha512-VZHLoK3cZoN8DelBT6zr6w347t4/xsDjYbxDNbjyGzOJrvAIJORJoRVBop6EG/tW3Mpz0rEueS4YyD8WXgI6Tw==}
-    peerDependencies:
-      react: 16.8 - 19
 
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
@@ -10824,10 +10811,6 @@ snapshots:
       '@babel/runtime': 7.26.0
       react: 19.0.0
 
-  react-from-dom@0.7.5(react@19.0.0):
-    dependencies:
-      react: 19.0.0
-
   react-hook-form@7.45.4(react@19.0.0):
     dependencies:
       react: 19.0.0
@@ -10835,11 +10818,6 @@ snapshots:
   react-image-crop@10.1.8(react@19.0.0):
     dependencies:
       react: 19.0.0
-
-  react-inlinesvg@4.1.8(react@19.0.0):
-    dependencies:
-      react: 19.0.0
-      react-from-dom: 0.7.5(react@19.0.0)
 
   react-is@16.13.1: {}
 

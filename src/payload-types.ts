@@ -218,6 +218,7 @@ export interface Media {
     };
     [k: string]: unknown;
   } | null;
+  classes?: string | null;
   placeholder?: (string | null) | Media;
   updatedAt: string;
   createdAt: string;
@@ -1128,6 +1129,7 @@ export interface PostsSelect<T extends boolean = true> {
 export interface MediaSelect<T extends boolean = true> {
   alt?: T;
   caption?: T;
+  classes?: T;
   placeholder?: T;
   updatedAt?: T;
   createdAt?: T;

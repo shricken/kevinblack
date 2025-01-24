@@ -38,6 +38,10 @@ export const Media: CollectionConfig = {
       }),
     },
     {
+      name: 'classes',
+      type: 'text',
+    },
+    {
       name: 'placeholder',
       type: 'upload',
       relationTo: 'media',

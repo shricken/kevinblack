@@ -151,4 +151,5 @@ export default {
       }),
     },
   },
+  safelist: ['dark:invert'],
 }
