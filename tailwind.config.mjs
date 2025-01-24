@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
@@ -109,7 +110,7 @@ export default {
           to: { height: '0' },
         },
       },
-      typography: ({ theme }) => ({
+      typography: ({}) => ({
         DEFAULT: {
           css: [
             {
@@ -150,4 +151,5 @@ export default {
       }),
     },
   },
+  safelist: ['dark:invert'],
 }

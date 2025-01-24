@@ -7,6 +7,7 @@ import type { Page } from '@/payload-types'
 
 import { CMSLink } from '@/components/Link'
 import RichText from '@/components/RichText'
+import BannerBlob from '@/components/BannerBlob'
 
 export const TextHero: React.FC<Page['hero']> = ({ heroTitle, links, richText }) => {
   const { scrollYProgress } = useScroll()
@@ -14,7 +15,7 @@ export const TextHero: React.FC<Page['hero']> = ({ heroTitle, links, richText })
 
   return (
     <div className="relative -mt-[10.4rem] h-[75vh] flex items-center justify-start">
-      <div className="container mt-14 z-10 relative">
+      <div className="container mt-14 z-20 relative">
         <div className="max-w-[36.5rem]">
           <h1 className="relative text-transparent text-8xl font-serif bg-gradient-to-br from-30% from-primary to-white dark:to-black bg-clip-text">
             {heroTitle}
@@ -28,6 +29,9 @@ export const TextHero: React.FC<Page['hero']> = ({ heroTitle, links, richText })
           {richText && <RichText className="mb-6 text-xl" data={richText} enableGutter={false} />}
           {links && Array.isArray(links) && links.length > 0 && (
             <ul className="flex gap-4">
+              <li>
+                <span className="text-xs leading-[20px] uppercase font-bold">Connect:</span>
+              </li>
               {links.map(({ link }, i) => {
                 link.appearance = 'link'
                 return (
@@ -39,6 +43,11 @@ export const TextHero: React.FC<Page['hero']> = ({ heroTitle, links, richText })
             </ul>
           )}
         </div>
+      </div>
+      <div className="absolute z-10 top-0 right-0 bottom-0 left-0 backdrop-blur-2xl" />
+      <div className="absolute z-0 top-10 right-10 bottom-10 left-10 opacity-10 dark:opacity-[0.12]">
+        <BannerBlob />
+        <BannerBlob />
       </div>
     </div>
   )
