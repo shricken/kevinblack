@@ -29,6 +29,9 @@ export const TextHero: React.FC<Page['hero']> = ({ heroTitle, links, richText })
           {richText && <RichText className="mb-6 text-xl" data={richText} enableGutter={false} />}
           {links && Array.isArray(links) && links.length > 0 && (
             <ul className="flex gap-4">
+              <li>
+                <span className="text-xs leading-[20px] uppercase font-bold">Connect:</span>
+              </li>
               {links.map(({ link }, i) => {
                 link.appearance = 'link'
                 return (
@@ -42,7 +45,7 @@ export const TextHero: React.FC<Page['hero']> = ({ heroTitle, links, richText })
         </div>
       </div>
       <div className="absolute z-10 top-0 right-0 bottom-0 left-0 backdrop-blur-2xl" />
-      <div className="absolute z-0 top-0 right-0 bottom-0 left-0 opacity-10 dark:opacity-20">
+      <div className="absolute z-0 top-10 right-10 bottom-10 left-10 opacity-10 dark:opacity-[0.12]">
         <BannerBlob />
         <BannerBlob />
       </div>

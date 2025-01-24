@@ -19,6 +19,7 @@ export interface Config {
     users: User;
     skills: Skill;
     projects: Project;
+    icons: Icon;
     redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
@@ -36,6 +37,7 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     skills: SkillsSelect<false> | SkillsSelect<true>;
     projects: ProjectsSelect<false> | ProjectsSelect<true>;
+    icons: IconsSelect<false> | IconsSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
@@ -129,7 +131,15 @@ export interface Page {
       | null;
     media?: (string | null) | Media;
   };
-  layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock | JobListBlock)[];
+  layout: (
+    | CallToActionBlock
+    | ContentBlock
+    | MediaBlock
+    | ArchiveBlock
+    | FormBlock
+    | JobListBlock
+    | IconCarouselBlock
+  )[];
   meta?: {
     title?: string | null;
     image?: (string | null) | Media;
@@ -745,6 +755,47 @@ export interface Project {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IconCarouselBlock".
+ */
+export interface IconCarouselBlock {
+  introContent?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  selectedIcons?:
+    | {
+        relationTo: 'icons';
+        value: string | Icon;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'iconCarousel';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "icons".
+ */
+export interface Icon {
+  id: string;
+  iconName: string;
+  media: string | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -821,6 +872,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'projects';
         value: string | Project;
+      } | null)
+    | ({
+        relationTo: 'icons';
+        value: string | Icon;
       } | null)
     | ({
         relationTo: 'redirects';
@@ -914,6 +969,7 @@ export interface PagesSelect<T extends boolean = true> {
         archive?: T | ArchiveBlockSelect<T>;
         formBlock?: T | FormBlockSelect<T>;
         jobList?: T | JobListBlockSelect<T>;
+        iconCarousel?: T | IconCarouselBlockSelect<T>;
       };
   meta?:
     | T
@@ -1021,6 +1077,16 @@ export interface JobListBlockSelect<T extends boolean = true> {
   introContent?: T;
   populateBy?: T;
   selectedJobs?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IconCarouselBlock_select".
+ */
+export interface IconCarouselBlockSelect<T extends boolean = true> {
+  introContent?: T;
+  selectedIcons?: T;
   id?: T;
   blockName?: T;
 }
@@ -1218,6 +1284,16 @@ export interface SkillsSelect<T extends boolean = true> {
 export interface ProjectsSelect<T extends boolean = true> {
   projectName?: T;
   description?: T;
+  media?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "icons_select".
+ */
+export interface IconsSelect<T extends boolean = true> {
+  iconName?: T;
   media?: T;
   updatedAt?: T;
   createdAt?: T;
