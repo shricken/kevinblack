@@ -45,7 +45,7 @@ export const ImageMedia: React.FC<MediaProps> = (props) => {
 
     width = fullWidth!
     height = fullHeight!
-    alt = altFromResource || ''
+    alt = (altFromProps ?? altFromResource) || ''
 
     src = `${getClientSideURL()}${url}`
   }

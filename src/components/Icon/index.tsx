@@ -16,7 +16,6 @@ export const Icon: React.FC<{
   if (!doc) return false
 
   const { iconName, media } = doc || {}
-  console.log(media)
 
   return (
     <div>
