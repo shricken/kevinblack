@@ -66,6 +66,7 @@ export const IconCarousel: React.FC<Props> = (props) => {
     >
       <motion.ul
         ref={iconScope}
+        initial={{ x: 80 }}
         className={`relative box-content list-none w-[9999px] h-16 py-4`}
         style={{ left: `-${(icons.length + 1) * 80}px` }}
       >
