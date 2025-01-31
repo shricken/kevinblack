@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
 import { cn } from 'src/utilities/cn'
-import { Work_Sans } from 'next/font/google'
+import { Work_Sans, Space_Mono } from 'next/font/google'
 import localFont from 'next/font/local'
 import React from 'react'
 
@@ -17,13 +17,22 @@ import './globals.css'
 import { getServerSideURL } from '@/utilities/getURL'
 
 const work = Work_Sans({ subsets: ['latin'], variable: '--font-work-sans' })
+const space = Space_Mono({
+  subsets: ['latin'],
+  variable: '--font-space-mono',
+  weight: '400',
+})
 const emberly = localFont({ src: '../assets/fonts/Emberly-Bold.woff2' })
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const { isEnabled } = await draftMode()
 
   return (
-    <html className={cn(work.className, 'font-light')} lang="en" suppressHydrationWarning>
+    <html
+      className={cn(work.className, space.variable, 'font-light')}
+      lang="en"
+      suppressHydrationWarning
+    >
       <head>
         <InitTheme />
         <link href="/favicon.png" rel="icon" sizes="32x32" />

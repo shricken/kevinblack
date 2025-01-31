@@ -96,7 +96,7 @@ export default {
         warning: 'hsl(var(--warning))',
       },
       fontFamily: {
-        mono: ['var(--font-geist-mono)'],
+        mono: ['var(--font-space-mono), mono'],
         sans: ['var(--font-work-sans), sans-serif'],
         serif: 'emberly, serif',
       },
