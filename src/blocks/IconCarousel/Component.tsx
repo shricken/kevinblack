@@ -22,7 +22,7 @@ export const IconCarouselBlock: React.FC<
   }
 
   return (
-    <div className="mt-16 mb-32" id={`block-${id}`}>
+    <div className="my-16 pb-16 overflow-hidden" id={`block-${id}`}>
       {introContent && (
         <div className="container mb-10">
           <RichText
