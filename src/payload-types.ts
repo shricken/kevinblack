@@ -791,7 +791,37 @@ export interface IconCarouselBlock {
 export interface Icon {
   id: string;
   iconName: string;
-  media: string | Media;
+  media?: (string | null) | Media;
+  icon?:
+    | (
+        | 'adobe-illustrator'
+        | 'adobe-photoshop'
+        | 'algolia'
+        | 'bitbucket'
+        | 'browserstack'
+        | 'chatgpt'
+        | 'confluence'
+        | 'css3'
+        | 'drupal'
+        | 'figma'
+        | 'gatsby'
+        | 'git'
+        | 'github'
+        | 'html5'
+        | 'javascript'
+        | 'jetbrains'
+        | 'jira'
+        | 'nextjs'
+        | 'react'
+        | 'salesforce'
+        | 'sass'
+        | 'tailwindcss'
+        | 'typescript'
+        | 'vercel'
+        | 'vscode'
+        | 'webpack'
+      )
+    | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -1297,6 +1327,7 @@ export interface ProjectsSelect<T extends boolean = true> {
 export interface IconsSelect<T extends boolean = true> {
   iconName?: T;
   media?: T;
+  icon?: T;
   updatedAt?: T;
   createdAt?: T;
 }
