@@ -98,7 +98,7 @@ export const Preview: React.FC<{
                 y: isActive ? 0 : -20,
                 rotate: isActive ? 0 : '1.2deg',
                 opacity: isActive ? 1 : 0,
-                transition: { duration: 0.3, ease: 'easeOut' },
+                transition: { duration: 0.25, ease: [0.215, 0.61, 0.355, 1] },
               }}
             >
               <PreviewDetails
@@ -110,7 +110,7 @@ export const Preview: React.FC<{
 
             <div
               className={cn(
-                'bg-white/80 backdrop-blur-sm fixed left-0 right-0 top-0 bottom-0 w-[140vw] h-[140vh] z-20 transition-all duration-500 dark:bg-black/80',
+                'bg-white/80 backdrop-blur-sm fixed left-0 right-0 top-0 bottom-0 w-[140vw] h-[140vh] z-20 transition-all duration-300 dark:bg-black/80',
                 isActive
                   ? 'left-[-20vw] top-0 opacity-100'
                   : 'left-[20vw] top-[-20vh] opacity-0 pointer-events-none',
