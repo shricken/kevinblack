@@ -81,7 +81,6 @@ export const Icon: React.FC<{
 
   const { iconName, media, icon } = doc || {}
   const IconComponent = icon ? icons[icon as keyof typeof icons] : null
-  console.log(styles)
 
   return (
     <div>
