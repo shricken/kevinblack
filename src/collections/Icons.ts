@@ -56,6 +56,7 @@ export const Icons: CollectionConfig = {
         'vercel',
         'vscode',
         'webpack',
+        'wordpress',
       ],
       required: false,
     },

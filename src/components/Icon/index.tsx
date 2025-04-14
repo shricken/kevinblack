@@ -34,6 +34,7 @@ import Typescript from '../../assets/icons/component-options/typescript.svg'
 import Vercel from '../../assets/icons/component-options/vercel.svg'
 import Vscode from '../../assets/icons/component-options/vs-code.svg'
 import Webpack from '../../assets/icons/component-options/webpack.svg'
+import Wordpress from '../../assets/icons/component-options/wordpress.svg'
 
 export type IconData = Pick<IconType, 'iconName' | 'media' | 'icon'>
 
@@ -64,9 +65,10 @@ const icons = {
   vercel: Vercel,
   vscode: Vscode,
   webpack: Webpack,
+  wordpress: Wordpress,
 }
 
-const blackIcons: string[] = ['chatgpt', 'github', 'nextjs', 'vercel']
+const blackIcons: string[] = ['chatgpt', 'github', 'nextjs', 'vercel', 'wordpress']
 
 export const Icon: React.FC<{
   className?: string
@@ -78,7 +80,7 @@ export const Icon: React.FC<{
   if (!doc) return false
 
   const { iconName, media, icon } = doc || {}
-  const IconComponent: React.FC | null = icon ? icons[icon as keyof typeof icons] : null
+  const IconComponent = icon ? icons[icon as keyof typeof icons] : null
   console.log(styles)
 
   return (
@@ -96,11 +98,11 @@ export const Icon: React.FC<{
         >
           {!!IconComponent ? (
             <div
-              className={cn('w-16 h-16 mx-2', styles['icon--svg'], {
+              className={cn('w-16 h-16 mx-2 flex justify-center', styles['icon--svg'], {
                 [styles.black]: blackIcons.includes(icon || ''),
               })}
             >
-              <IconComponent />
+              <IconComponent style={{ maxHeight: '100%' }} />
             </div>
           ) : (
             <>

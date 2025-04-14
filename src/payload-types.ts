@@ -820,6 +820,7 @@ export interface Icon {
         | 'vercel'
         | 'vscode'
         | 'webpack'
+        | 'wordpress'
       )
     | null;
   updatedAt: string;
