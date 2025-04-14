@@ -5,6 +5,7 @@ import { motion, useAnimate } from 'motion/react'
 
 import { Media } from '../Media'
 import { cn } from '@/utilities/cn'
+import styles from './icon.module.css'
 
 import AdobeIllustrator from '../../assets/icons/component-options/adobe-illustrator.svg'
 import AdobePhotoshop from '../../assets/icons/component-options/adobe-photoshop.svg'
@@ -65,6 +66,8 @@ const icons = {
   webpack: Webpack,
 }
 
+const blackIcons: string[] = ['chatgpt', 'github', 'nextjs', 'vercel']
+
 export const Icon: React.FC<{
   className?: string
   isActive?: boolean
@@ -75,7 +78,8 @@ export const Icon: React.FC<{
   if (!doc) return false
 
   const { iconName, media, icon } = doc || {}
-  const IconComponent: React.FC | null = icon ? icons[icon] : null
+  const IconComponent: React.FC | null = icon ? icons[icon as keyof typeof icons] : null
+  console.log(styles)
 
   return (
     <div>
@@ -91,7 +95,11 @@ export const Icon: React.FC<{
           }}
         >
           {!!IconComponent ? (
-            <div className="w-16 h-16 mx-2">
+            <div
+              className={cn('w-16 h-16 mx-2', styles['icon--svg'], {
+                [styles.black]: blackIcons.includes(icon || ''),
+              })}
+            >
               <IconComponent />
             </div>
           ) : (
